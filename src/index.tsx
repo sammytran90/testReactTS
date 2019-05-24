@@ -4,16 +4,26 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer, { rootEpic } from './reducers';
+import { createStore, applyMiddleware, compose } from 'redux';
+import rootReducer from './reducers';
 import { createEpicMiddleware } from 'redux-observable';
+import { ActionType } from 'typesafe-actions';
+import { RootState } from './reducers';
+import * as actions from './actions';
+import { rootEpic } from './epics';
 
-const epicMiddleware = createEpicMiddleware();
+type Action = ActionType<typeof actions>;
+
+
+const epicMiddleware = createEpicMiddleware<Action, Action, RootState>();
+const middleWare = applyMiddleware(epicMiddleware);
+const enhancer = (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__();
 
 const store = createStore(
     rootReducer,
-    applyMiddleware(epicMiddleware)
-);
+    compose(middleWare, enhancer)
+)
 
 epicMiddleware.run(rootEpic);
 

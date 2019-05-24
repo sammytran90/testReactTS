@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Todo from './todo.test';
-import { todoStoreType } from '../reducers/todo.reducer';
+import { todoState } from '../reducers/todo.reducer';
 
-const TodoList = ({ todos, toggleTodo }: { todos: todoStoreType[], toggleTodo: Function }) => (
+const TodoList = ({ todos, toggleTodo }: { todos: todoState[], toggleTodo: Function }) => (
     <ul>
         {todos.map(todo => (
             <Todo key={todo.id} {...todo} onClick={() => toggleTodo(todo.id)} />

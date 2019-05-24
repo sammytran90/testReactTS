@@ -1,25 +1,15 @@
-import { TodoActions } from '../actions';
-import { filter, mapTo } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { ActionsObservable, ofType } from 'redux-observable';
-import { Action } from 'redux';
+import * as actions from '../actions';
 
-export interface todoStoreType {
+export interface todoState {
     id: number,
     text?: string,
     completed: boolean
 }
 
-// export const todosEpic = (action$: ActionsObservable<Action>) => action$.pipe(
-//     filter(ofType<todoAction>()),
-//     mapTo({ type: 'PONG' })
-// );
-
-
-export const todos = (state: todoStoreType[] = [], action: TodoActions) => {
+export const todos = (state: todoState[] = [], action: any) => {
     switch (action.type) {
         case 'ADD_TODO':
-            return [
+            let newState: todoState[] = [
                 ...state,
                 {
                     id: action.id,
@@ -27,6 +17,8 @@ export const todos = (state: todoStoreType[] = [], action: TodoActions) => {
                     completed: false
                 }
             ]
+            console.log(newState);
+            return newState;
         case 'TOGGLE_TODO':
             return state.map(todo =>
                 todo.id === action.id ? { ...todo, completed: !todo.completed } : todo

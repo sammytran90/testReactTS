@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
-import { toggleTodo } from '../actions'
+import { ToogleTodoAction } from '../actions'
 import TodoList from '../components/TodoList.test';
 import { VisibilityFilters } from '../actions'
-import { todoStoreType } from '../reducers/todo.reducer'
-
-const getVisibleTodos = (todos: todoStoreType[], filter: string) => {
-    switch (filter) {
+import { todoState } from '../reducers/todo.reducer'
+import { filterState } from '../reducers/visibilityFilter.reducer';
+const getVisibleTodos = (todos: todoState[], filter: filterState) => {
+    switch (filter.filter) {
         case VisibilityFilters.SHOW_ALL:
             return todos
         case VisibilityFilters.SHOW_COMPLETED:
@@ -17,12 +17,12 @@ const getVisibleTodos = (todos: todoStoreType[], filter: string) => {
     }
 }
 
-const mapStateToProps = (state: { todos: todoStoreType[], visibilityFilter: string }) => ({
+const mapStateToProps = (state: { todos: todoState[], visibilityFilter: filterState }) => ({
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
 })
 
 const mapDispatchToProps = (dispatch: Function) => ({
-    toggleTodo: (id: number) => dispatch(toggleTodo(id))
+    toggleTodo: (id: number) => dispatch(ToogleTodoAction(id))
 })
 
 export default connect(
