@@ -7,13 +7,14 @@ export interface todoState {
 }
 
 export const todos = (state: todoState[] = [], action: any) => {
+    console.log(action);
     switch (action.type) {
         case 'ADD_TODO':
             let newState: todoState[] = [
                 ...state,
                 {
-                    id: action.id,
-                    text: action.text,
+                    id: action.payload.id,
+                    text: action.payload.text,
                     completed: false
                 }
             ]
@@ -21,7 +22,7 @@ export const todos = (state: todoState[] = [], action: any) => {
             return newState;
         case 'TOGGLE_TODO':
             return state.map(todo =>
-                todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
+                todo.id === action.payload.id ? { ...todo, completed: !todo.completed } : todo
             )
         default:
             return state

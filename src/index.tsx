@@ -25,7 +25,7 @@ const store = createStore(
     compose(middleWare, enhancer)
 )
 
-epicMiddleware.run(rootEpic);
+// epicMiddleware.run(rootEpic);
 
 ReactDOM.render(
     <Provider store={store}>
