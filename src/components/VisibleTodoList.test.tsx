@@ -5,6 +5,7 @@ import { VisibilityFilters } from '../actions'
 import { todoState } from '../reducers/todo.reducer'
 import { filterState } from '../reducers/visibilityFilter.reducer';
 const getVisibleTodos = (todos: todoState[], filter: filterState) => {
+    // console.log(filter);
     switch (filter.filter) {
         case VisibilityFilters.SHOW_ALL:
             return todos

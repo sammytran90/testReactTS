@@ -10,8 +10,9 @@ type Action = ActionType<typeof actions>;
 export const visibilityFilterEpic: Epic<Action, Action, RootState> = (action$, store) =>
     action$.pipe(
         filter(isActionOf(actions.setVisibilityFilterAction)),
+        filter(action => action.payload.filter != actions.VisibilityFilters.SHOW_ALL),
         delay(1500),
-        tap(v => console.log('tap tap')),
+        tap(v => console.log(v)),
         mapTo(actions.setVisibilityFilterAction(actions.VisibilityFilters.SHOW_ALL))
     )
 

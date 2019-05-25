@@ -7,7 +7,7 @@ export interface filterState {
 export const visibilityFilter = (state: filterState = { filter: VisibilityFilters.SHOW_ALL }, action: any) => {
     switch (action.type) {
         case 'SET_VISIBILITY_FILTER':
-            return { filter: action.filter }
+            return { filter: action.payload.filter }
         default:
             return state
     }

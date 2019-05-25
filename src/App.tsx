@@ -5,15 +5,23 @@ import MapComponent from './components/map.component/map.component';
 import AddTodo from './components/AddTodo.test';
 import VisibleTodoList from './components/VisibleTodoList.test';
 import Footer from './components/footer.test';
-
+import Header from './components/header.component/header.component';
+import todoPage from './components/doto.test/todoPage.test';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { PrivateRoute } from './containers/privateRoute.container/privateRoute.container';
 const App: React.FC = () => {
   return (
-    <div className="App">
-      {/* <MapComponent></MapComponent> */}
-      <AddTodo></AddTodo>
-      <VisibleTodoList></VisibleTodoList>
-      <Footer></Footer>
-    </div>
+    <Router>
+      <div className="App">
+        <Header></Header>
+        <Route exact path="/" component={MapComponent}></Route>
+        <PrivateRoute path="/todoTest" component={todoPage}></PrivateRoute>
+        {/* <MapComponent></MapComponent> */}
+        {/* <AddTodo></AddTodo>
+<VisibleTodoList></VisibleTodoList>
+<Footer></Footer> */}
+      </div>
+    </Router>
   );
 }
 

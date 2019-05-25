@@ -27,7 +27,7 @@ export const VisibilityFilters = {
 
 export const AddTodoAction = createAction(todoActionTypes.ADD_TODO, resolve => (text: string) => resolve({ id: nextTodoId++, text }));
 export const ToogleTodoAction = createAction(todoActionTypes.TOGGLE_TODO, resolve => (id: number) => resolve({ id }));
-export const setVisibilityFilterAction = createAction(setVisibilityFilterTypes.SET_VISIBILITY_FILTER, resolve => (filter: string) => resolve({ filter }));
+export const setVisibilityFilterAction = createAction(setVisibilityFilterTypes.SET_VISIBILITY_FILTER, resolve => (filter: string) => resolve({ filter: filter }));
 // export interface AddTodoAction extends Action {
 //     type: todoActionTypes.ADD_TODO,
 //     id: number,

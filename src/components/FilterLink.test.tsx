@@ -7,7 +7,10 @@ const mapStateToProps = (state: { visibilityFilter: string }, ownProps: { filter
 })
 
 const mapDispatchToProps = (dispatch: Function, ownProps: { filter: string }) => ({
-    onClick: () => dispatch(setVisibilityFilterAction(ownProps.filter))
+    onClick: () => {
+        console.log(ownProps);
+        dispatch(setVisibilityFilterAction(ownProps.filter))
+    }
 })
 
 export default connect(

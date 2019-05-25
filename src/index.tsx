@@ -17,15 +17,15 @@ type Action = ActionType<typeof actions>;
 
 const epicMiddleware = createEpicMiddleware<Action, Action, RootState>();
 const middleWare = applyMiddleware(epicMiddleware);
-const enhancer = (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__();
+const enhancer = ((window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__()) || undefined;
 
 const store = createStore(
     rootReducer,
-    compose(middleWare, enhancer)
+    enhancer ? compose(middleWare, enhancer) : compose(middleWare)
 )
 
-// epicMiddleware.run(rootEpic);
+epicMiddleware.run(rootEpic);
 
 ReactDOM.render(
     <Provider store={store}>
