@@ -9,13 +9,14 @@ import Header from './components/header.component/header.component';
 import todoPage from './components/doto.test/todoPage.test';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { PrivateRoute } from './containers/privateRoute.container/privateRoute.container';
+
 const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
         <Header></Header>
         <Route exact path="/" component={MapComponent}></Route>
-        <PrivateRoute path="/todoTest" component={todoPage}></PrivateRoute>
+        <PrivateRoute path="/todoTest" Component={todoPage}></PrivateRoute>
         {/* <MapComponent></MapComponent> */}
         {/* <AddTodo></AddTodo>
 <VisibleTodoList></VisibleTodoList>
